@@ -8,6 +8,15 @@ pagination, real-time updates with Socket.IO, validation, security middleware, a
 > 📘 **Interview prep:** read [`docs/INTERVIEW_NOTES.md`](docs/INTERVIEW_NOTES.md). It maps every
 > feature to the file that implements it and the questions it helps you answer.
 
+## Docs
+
+| File | What it's for |
+|---|---|
+| [`docs/INTERVIEW_NOTES.md`](docs/INTERVIEW_NOTES.md) | Interview questions, with each answer pointing to the code that implements it |
+| [`docs/DECISIONS.md`](docs/DECISIONS.md) | Why things are built this way (and when to revisit) |
+| [`docs/ROADMAP.md`](docs/ROADMAP.md) | What's verified, known limitations, next features |
+| [`CLAUDE.md`](CLAUDE.md) | Conventions and a checklist for adding features (for you or an AI assistant) |
+
 ## Tech stack
 
 | Layer | Choice |
@@ -53,7 +62,7 @@ your own users.
 
 ### Option B: Node + your own MongoDB
 
-Needs Node 20+ and MongoDB (local `mongod` or a free Atlas cluster).
+Needs Node 20+ (`.nvmrc` pins 22) and MongoDB (local `mongod` or a free Atlas cluster).
 
 ```bash
 cd server
