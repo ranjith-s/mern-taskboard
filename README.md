@@ -32,13 +32,24 @@ pagination, real-time updates with Socket.IO, validation, security middleware, a
 
 ## Run locally
 
+First get the code:
+
+```bash
+git clone https://github.com/ranjith-s/mern-taskboard.git
+cd mern-taskboard
+```
+
 ### Option A: Docker (everything in one command)
+
+Needs only Docker Desktop.
 
 ```bash
 docker compose up --build
 ```
 
-Open http://localhost:8080 and sign up. (Use two browsers to see live updates.)
+Wait until the logs show `API listening on ...`, then open http://localhost:8080 and sign up.
+Press Ctrl+C to stop. The Docker setup starts with no data (the seed script isn't run), so create
+your own users.
 
 ### Option B: Node + your own MongoDB
 
@@ -51,6 +62,9 @@ npm install
 npm run seed              # optional demo data
 npm run dev               # API on http://localhost:5000
 ```
+
+The backend is ready when the terminal shows `MongoDB connected` and `API listening on http://localhost:5000`.
+Then start the client in a second terminal:
 
 ```bash
 cd client
@@ -73,7 +87,26 @@ cd server
 npm test
 ```
 
-On the first run, `mongodb-memory-server` downloads a MongoDB binary (around 100 MB).
+You don't need a database running: the tests start their own in-memory MongoDB. On the first run,
+`mongodb-memory-server` downloads a MongoDB binary (around 100 MB), so it takes a minute.
+
+### Things to try by hand
+
+1. **Live updates:** log in as Asha in one browser and as Ravi in a private/incognito window, open
+   the same board, and drag a card in one window. It moves in the other.
+2. **Roles:** log in as Priya (viewer). You can view the board but can't add or drag cards.
+3. **Edit conflict:** open the same card in both windows, save in one, then save in the other.
+   The second save shows "changed by someone else" and loads the latest version.
+4. **Token refresh:** reload the page. You stay logged in because the session is restored from the
+   refresh cookie (DevTools → Application → Cookies → `refreshToken`, marked HttpOnly).
+5. **Side panel:** try the Activity (Load more = cursor pagination), Members (invite by email,
+   change roles) and Stats tabs.
+6. **API directly:** use Postman or Thunder Client against `http://localhost:5000/api`. Log in with
+   `POST /api/auth/login`, then send `Authorization: Bearer <accessToken>` on board routes.
+   The endpoints are listed below.
+
+(The demo users only exist after `npm run seed`, Option B. With Docker, sign up two or three users and
+invite them to a board from the Members tab.)
 
 ## API
 
