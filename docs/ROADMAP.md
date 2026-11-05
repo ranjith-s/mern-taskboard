@@ -28,7 +28,6 @@ When you complete a manual check, update this table.
 **Setup**
 - In Docker, the API runs with `NODE_ENV=production`, so the refresh cookie is `Secure`. This works on `http://localhost` in Chrome and Firefox, but **not** if you open the app via a LAN IP over plain http (login seems to work, then the session is lost on reload). Use localhost, or add HTTPS.
 - `docker-compose.yml` has a fallback JWT secret. Set `JWT_ACCESS_SECRET` in a `.env` file next to it for anything beyond local use.
-- CI warns that `actions/checkout@v4` and `actions/setup-node@v4` target a deprecated Node version. Bump them to the latest major versions.
 
 **Quality**
 - No frontend tests and no ESLint/Prettier config.
